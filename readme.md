@@ -18,54 +18,6 @@ Example:
       node-version: 16
 ```
 
-### Test
-
-This action will execute the tests.
-
-Example:
-
-```yaml
-  - uses: actions/checkout@v3
-
-  - uses: aboutbits/github-actions-node/setup-and-install@v1
-    with:
-      node-version: 16
-
-  - uses: aboutbits/github-actions-node/test@v1
-```
-
-### Lint
-
-This action will lint the code.
-
-Example:
-
-```yaml
-  - uses: actions/checkout@v3
-
-  - uses: aboutbits/github-actions-node/setup-and-install@v1
-    with:
-      node-version: 16
-
-  - uses: aboutbits/github-actions-node/lint@v1
-```
-
-### Typecheck
-
-This action will typecheck the code.
-
-Example:
-
-```yaml
-  - uses: actions/checkout@v3
-
-  - uses: aboutbits/github-actions-node/setup-and-install@v1
-    with:
-      node-version: 16
-
-  - uses: aboutbits/github-actions-node/typecheck@v1
-```
-
 ## Versioning
 
 In order to have a verioning in place and working, create leightweight tags that point to the appropriate minor release versions.
