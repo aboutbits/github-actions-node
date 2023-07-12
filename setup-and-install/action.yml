@@ -17,6 +17,10 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
+    - name: List working directory
+      working-directory: ${{ inputs.working-directory }}
+      run: ls -la
+      shell: bash
     - name: Install dependencies
       working-directory: ${{ inputs.working-directory }}
       run: npm ci
