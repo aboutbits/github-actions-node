@@ -18,46 +18,50 @@ This action will set up Node.js and install all NPM dependencies.
 
 ## Test
 
-This action will first run the setup and install action and then execute the tests.
+This action will execute the tests.
 
 ### Example
 
 ```yaml
   - uses: actions/checkout@v3
 
-  - uses: aboutbits/github-actions-node/test@v1
+  - uses: aboutbits/github-actions-node/setup-and-install@v1
     with:
       node-version: 16
+
+  - uses: aboutbits/github-actions-node/test@v1
 ```
 
 ## Lint
 
-This action will first run the setup and install action and then lint the code.
+This action will lint the code.
 
 ### Example
 
 ```yaml
   - uses: actions/checkout@v3
 
-  - name: 
-    uses: aboutbits/github-actions-node/lint@v1
+  - uses: aboutbits/github-actions-node/setup-and-install@v1
     with:
       node-version: 16
+
+  - uses: aboutbits/github-actions-node/lint@v1
 ```
 
 ## Typecheck
 
-This action will first run the setup and install action and then typecheck the code.
+This action will typecheck the code.
 
 ### Example
 
 ```yaml
   - uses: actions/checkout@v3
 
-  - name: 
-    uses: aboutbits/github-actions-node/typecheck@v1
+  - uses: aboutbits/github-actions-node/setup-and-install@v1
     with:
       node-version: 16
+
+  - uses: aboutbits/github-actions-node/typecheck@v1
 ```
 
 ## Versioning
