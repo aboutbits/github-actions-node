@@ -45,6 +45,21 @@ This action will first run the setup and install action and then lint the code.
       node-version: 16
 ```
 
+## Typecheck
+
+This action will first run the setup and install action and then typecheck the code.
+
+### Example
+
+```yaml
+  - uses: actions/checkout@v3
+
+  - name: 
+    uses: aboutbits/github-actions-node/typecheck@v1
+    with:
+      node-version: 16
+```
+
 ## Versioning
 
 In order to have a verioning in place and working, create leightweight tags that point to the appropriate minor release versions.

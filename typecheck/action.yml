@@ -1,0 +1,28 @@
+name: 'Node - Typecheck code'
+
+inputs:
+  working-directory:
+    description: 'The working directory'
+    required: false
+    default: '.'
+  node-version:
+    description: 'The Node version that should be used for the build'
+    required: true
+    default: '16.x'
+  typecheck-command:
+    description: 'The typecheck command'
+    required: true
+    default: 'npm run typecheck'
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node and install dependencies
+      uses: ../setup-and-install
+      with:
+        working-directory: ${{ inputs.working-directory }}
+        node-version: ${{ inputs.node-version }}
+    - name: Typecheck code
+      working-directory: ${{ inputs.working-directory }}
+      run: ${{ inputs.typecheck-command }}
+      shell: bash
