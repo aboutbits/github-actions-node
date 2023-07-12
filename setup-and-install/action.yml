@@ -1,6 +1,10 @@
 name: 'Node - Setup and install dependencies'
 
 inputs:
+  working-directory:
+    description: 'The working directory'
+    required: false
+    default: '.'
   node-version:
     description: 'The Node version that should be used for the build'
     required: true
@@ -13,9 +17,9 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
-    - name: List working directory
-      run: ls -la
-      shell: bash
+        cache: npm
+        cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
     - name: Install dependencies
+      working-directory: ${{ inputs.working-directory }}
       run: npm ci
       shell: bash
