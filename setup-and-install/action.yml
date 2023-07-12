@@ -1,10 +1,6 @@
 name: 'Node - Setup and install dependencies'
 
 inputs:
-  working-directory:
-    description: 'The working directory'
-    required: false
-    default: '.'
   node-version:
     description: 'The Node version that should be used for the build'
     required: true
@@ -18,10 +14,8 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
     - name: List working directory
-      working-directory: ${{ inputs.working-directory }}
       run: ls -la
       shell: bash
     - name: Install dependencies
-      working-directory: ${{ inputs.working-directory }}
       run: npm ci
       shell: bash
