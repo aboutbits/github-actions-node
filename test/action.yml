@@ -1,0 +1,28 @@
+name: 'Node - Test code'
+
+inputs:
+  working-directory:
+    description: 'The working directory'
+    required: false
+    default: '.'
+  node-version:
+    description: 'The Node version that should be used for the build'
+    required: true
+    default: '16.x'
+  test-command:
+    description: 'The test command'
+    required: true
+    default: 'npm run build'
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node and install dependencies
+      uses: ../setup-and-install
+      with:
+        working-directory: ${{ inputs.working-directory }}
+        node-version: ${{ inputs.node-version }}
+    - name: Test code
+      working-directory: ${{ inputs.working-directory }}
+      run: ${{ inputs.test-command }}
+      shell: bash

@@ -2,13 +2,47 @@
 
 A collection of GitHub actions for Node projects.
 
-## Example Playbook
+## Setup Node and Install Dependencies
+
+This action will set up Node.js and install all NPM dependencies.
+
+### Example
 
 ```yaml
-  - name: Build code
-    uses: aboutbits/github-actions-node/xxx@v1
+  - uses: actions/checkout@v3
+
+  - uses: aboutbits/github-actions-node/setup-and-install@v1
     with:
-      xxx-version: ${{ env.NODE_VERSION }}
+      node-version: 16
+```
+
+## Test
+
+This action will first run the setup and install action and then execute the tests.
+
+### Example
+
+```yaml
+  - uses: actions/checkout@v3
+
+  - uses: aboutbits/github-actions-node/test@v1
+    with:
+      node-version: 16
+```
+
+## Lint
+
+This action will first run the setup and install action and then lint the code.
+
+### Example
+
+```yaml
+  - uses: actions/checkout@v3
+
+  - name: 
+    uses: aboutbits/github-actions-node/lint@v1
+    with:
+      node-version: 16
 ```
 
 ## Versioning

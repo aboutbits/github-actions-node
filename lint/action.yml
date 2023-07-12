@@ -1,0 +1,28 @@
+name: 'Node - Lint code'
+
+inputs:
+  working-directory:
+    description: 'The working directory'
+    required: false
+    default: '.'
+  node-version:
+    description: 'The Node version that should be used for the build'
+    required: true
+    default: '16.x'
+  lint-command:
+    description: 'The lint command'
+    required: true
+    default: 'npm run lint'
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node and install dependencies
+      uses: ../setup-and-install
+      with:
+        working-directory: ${{ inputs.working-directory }}
+        node-version: ${{ inputs.node-version }}
+    - name: Lint code
+      working-directory: ${{ inputs.working-directory }}
+      run: ${{ inputs.lint-command }}
+      shell: bash
