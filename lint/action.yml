@@ -13,11 +13,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set up Node and install dependencies
-      uses: ../setup-and-install
-      with:
-        working-directory: ${{ inputs.working-directory }}
-        node-version: ${{ inputs.node-version }}
     - name: Lint code
       working-directory: ${{ inputs.working-directory }}
       run: ${{ inputs.lint-command }}
