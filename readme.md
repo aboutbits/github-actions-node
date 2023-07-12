@@ -2,11 +2,13 @@
 
 A collection of GitHub actions for Node projects.
 
-## Setup Node and Install Dependencies
+## Actions
+
+### Setup Node and Install Dependencies
 
 This action will set up Node.js and install all NPM dependencies.
 
-### Example
+Example:
 
 ```yaml
   - uses: actions/checkout@v3
@@ -16,11 +18,11 @@ This action will set up Node.js and install all NPM dependencies.
       node-version: 16
 ```
 
-## Test
+### Test
 
 This action will execute the tests.
 
-### Example
+Example:
 
 ```yaml
   - uses: actions/checkout@v3
@@ -32,11 +34,11 @@ This action will execute the tests.
   - uses: aboutbits/github-actions-node/test@v1
 ```
 
-## Lint
+### Lint
 
 This action will lint the code.
 
-### Example
+Example:
 
 ```yaml
   - uses: actions/checkout@v3
@@ -48,11 +50,11 @@ This action will lint the code.
   - uses: aboutbits/github-actions-node/lint@v1
 ```
 
-## Typecheck
+### Typecheck
 
 This action will typecheck the code.
 
-### Example
+Example:
 
 ```yaml
   - uses: actions/checkout@v3
