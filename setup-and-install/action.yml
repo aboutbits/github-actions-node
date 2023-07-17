@@ -1,4 +1,4 @@
-name: 'Node - Setup and install dependencies'
+name: 'Setup and install dependencies'
 
 inputs:
   working-directory:
