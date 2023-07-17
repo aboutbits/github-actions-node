@@ -1,4 +1,4 @@
-name: 'Node - Setup'
+name: 'Setup'
 
 inputs:
   working-directory:

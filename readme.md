@@ -8,7 +8,7 @@ A collection of GitHub actions for Node projects.
 
 This action will set up Node.js.
 
-Example:
+#### Example
 
 ```yaml
   - uses: actions/checkout@v3
@@ -18,11 +18,20 @@ Example:
       node-version: 16
 ```
 
+#### Inputs
+
+The following inputs can be used as `step.with` keys:
+
+| Name                | Required/Default | Description                               |
+|---------------------|------------------|-------------------------------------------|
+| `working-directory` | (.)              | The working directory of the action       |
+| `node-version`      | (16)             | The Node.js version that should be set up |
+
 ### Setup Node and Install Dependencies
 
 This action will set up Node.js and install all NPM dependencies.
 
-Example:
+#### Example
 
 ```yaml
   - uses: actions/checkout@v3
@@ -31,6 +40,15 @@ Example:
     with:
       node-version: 16
 ```
+
+#### Inputs
+
+The following inputs can be used as `step.with` keys:
+
+| Name                | Required/Default | Description                               |
+|---------------------|------------------|-------------------------------------------|
+| `working-directory` | (.)              | The working directory of the action       |
+| `node-version`      | (16)             | The Node.js version that should be set up |
 
 ## Versioning
 
