@@ -1,0 +1,39 @@
+name: 'Create a new NPM version'
+
+inputs:
+  working-directory:
+    description: 'The working directory'
+    required: false
+    default: '.'
+  git-user-name:
+    description: 'The name of the git user'
+    required: true
+  git-user-email:
+    description: 'The email of the git user'
+    required: true
+  version:
+    description: 'The version that should be set'
+    default: 'patch'
+  message:
+    description: 'The message of the git commit'
+    default: '[RELEASE] %s'
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Set git user name
+      working-directory: ${{ inputs.working-directory }}
+      run: git config --global user.name ${{ inputs.git-user-name }}
+      shell: bash
+    - name: Set git user email
+      working-directory: ${{ inputs.working-directory }}
+      run: git config --global user.email ${{ inputs.git-user-email }}
+      shell: bash
+    - name: Increment version
+      working-directory: ${{ inputs.working-directory }}
+      run: npm version ${{ inputs.version }} -m "${{ inputs.message }}"
+      shell: bash
+    - name: Push git changes
+      working-directory: ${{ inputs.working-directory }}
+      run: git push
+      shell: bash
