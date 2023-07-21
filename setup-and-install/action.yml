@@ -1,15 +1,19 @@
-name: 'Setup and install dependencies'
+name: "Setup and install dependencies"
 
 inputs:
   working-directory:
-    description: 'The working directory'
+    description: "The working directory"
     required: false
-    default: '.'
+    default: "."
   node-version:
-    description: 'The Node version that should be used for the build'
+    description: "The Node version that should be used for the build"
     required: true
-    default: '16.x'
-  
+    default: "16.x"
+  registry-url:
+    description: "Registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN."
+    required: false
+    default: ""
+
 runs:
   using: "composite"
   steps:
@@ -19,6 +23,7 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: npm
         cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+        registry-url: ${{ inputs.registry-url }}
     - name: Install dependencies
       working-directory: ${{ inputs.working-directory }}
       run: npm ci

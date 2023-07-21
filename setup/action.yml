@@ -1,15 +1,15 @@
-name: 'Setup'
+name: "Setup"
 
 inputs:
-  working-directory:
-    description: 'The working directory'
-    required: false
-    default: '.'
   node-version:
-    description: 'The Node version that should be used for the build'
+    description: "The Node version that should be used for the build"
     required: true
-    default: '16.x'
-  
+    default: "16.x"
+  registry-url:
+    description: "Registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN."
+    required: false
+    default: ""
+
 runs:
   using: "composite"
   steps:
@@ -17,3 +17,4 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
+        registry-url: ${{ inputs.registry-url }}
