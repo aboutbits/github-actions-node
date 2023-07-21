@@ -11,9 +11,9 @@ This action will set up Node.js.
 #### Example
 
 ```yaml
-  - uses: aboutbits/github-actions-node/setup@v1
-    with:
-      node-version: 16
+- uses: aboutbits/github-actions-node/setup@v1
+  with:
+    node-version: 16
 ```
 
 #### Inputs
@@ -21,9 +21,10 @@ This action will set up Node.js.
 The following inputs can be used as `step.with` keys:
 
 | Name                | Required/Default | Description                               |
-|---------------------|------------------|-------------------------------------------|
+| ------------------- | ---------------- | ----------------------------------------- |
 | `working-directory` | `.`              | The working directory of the action       |
 | `node-version`      | `16`             | The Node.js version that should be set up |
+| `registry-url`      | `''`             | Optional registry to set up for auth      |
 
 ### Setup Node and Install Dependencies
 
@@ -32,9 +33,9 @@ This action will set up Node.js and install all NPM dependencies.
 #### Example
 
 ```yaml
-  - uses: aboutbits/github-actions-node/setup-and-install@v1
-    with:
-      node-version: 16
+- uses: aboutbits/github-actions-node/setup-and-install@v1
+  with:
+    node-version: 16
 ```
 
 #### Inputs
@@ -42,9 +43,10 @@ This action will set up Node.js and install all NPM dependencies.
 The following inputs can be used as `step.with` keys:
 
 | Name                | Required/Default | Description                               |
-|---------------------|------------------|-------------------------------------------|
+| ------------------- | ---------------- | ----------------------------------------- |
 | `working-directory` | `.`              | The working directory of the action       |
 | `node-version`      | `16`             | The Node.js version that should be set up |
+| `registry-url`      | `''`             | Optional registry to set up for auth      |
 
 ### Create a new NPM version
 
@@ -53,23 +55,23 @@ This action will set up git, increment the NPM version and push the changes.
 #### Example
 
 ```yaml
-  - uses: aboutbits/github-actions-node/version@v1
-    with:
-      git-user-name: AboutBits
-      git-user-email: info@aboutbits.it
+- uses: aboutbits/github-actions-node/version@v1
+  with:
+    git-user-name: AboutBits
+    git-user-email: info@aboutbits.it
 ```
 
 #### Inputs
 
 The following inputs can be used as `step.with` keys:
 
-| Name                | Required/Default | Description                               |
-|---------------------|------------------|-------------------------------------------|
-| `working-directory` | `.`              | The working directory of the action       |
-| `git-user-name`     | Required         | The name of the git user                  |
-| `git-user-email`    | Required         | The email of the git user                 |
-| `version`           | `patch`          | The version that should be set            |
-| `message`           | `[RELEASE] %s`   | The message of the git commit             |
+| Name                | Required/Default | Description                         |
+| ------------------- | ---------------- | ----------------------------------- |
+| `working-directory` | `.`              | The working directory of the action |
+| `git-user-name`     | Required         | The name of the git user            |
+| `git-user-email`    | Required         | The email of the git user           |
+| `version`           | `patch`          | The version that should be set      |
+| `message`           | `[RELEASE] %s`   | The message of the git commit       |
 
 ## Versioning
 
