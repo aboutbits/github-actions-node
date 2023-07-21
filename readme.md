@@ -24,6 +24,7 @@ The following inputs can be used as `step.with` keys:
 |---------------------|------------------|-------------------------------------------|
 | `working-directory` | `.`              | The working directory of the action       |
 | `node-version`      | `16`             | The Node.js version that should be set up |
+| `registry-url`      | (empty)          | Optional registry to set up for auth      |
 
 ### Setup Node and Install Dependencies
 
@@ -45,6 +46,7 @@ The following inputs can be used as `step.with` keys:
 |---------------------|------------------|-------------------------------------------|
 | `working-directory` | `.`              | The working directory of the action       |
 | `node-version`      | `16`             | The Node.js version that should be set up |
+| `registry-url`      | (empty)          | Optional registry to set up for auth      |
 
 ### Create a new NPM version
 
