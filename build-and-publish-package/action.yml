@@ -1,0 +1,66 @@
+name: 'Build and publish package'
+
+inputs:
+  working-directory:
+    description: 'The working directory'
+    required: false
+    default: '.'
+  node-version:
+    description: 'The Node version that should be used for the build'
+    required: true
+    default: '22.x'
+  registry-url:
+    description: 'Registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN.'
+    required: false
+    default: ''
+  increment:
+    description: 'The version increment type (major, minor, patch, prerelease, premajor, preminor, prepatch)'
+    required: true
+  preid:
+    description: 'The prerelease identifier (only required if increment is premajor, preminor or prepatch)'
+    required: false
+
+outputs:
+  version:
+    description: "Version"
+    value: ${{ steps.nextVersion.outputs.nextVersion }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: npm
+        cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+    - name: Get current package version
+      id: currentVersion
+      working-directory: ${{ inputs.working-directory }}
+      run: echo "currentVersion=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      shell: bash
+    - name: Validate prerelease increment
+      if: inputs.increment == 'prerelease' && !contains(steps.currentVersion.outputs.currentVersion, '-')
+      working-directory: ${{ inputs.working-directory }}
+      run: exit 1
+      shell: bash
+    - name: npm version
+      working-directory: ${{ inputs.working-directory }}
+      run: |
+        if [ -n "${{ inputs.preid }}" ]; then
+          npm version ${{ inputs.increment }} --preid ${{ inputs.preid }}
+        else
+          npm version ${{ inputs.increment }}
+        fi
+      shell: bash
+    - name: Get next package version
+      id: nextVersion
+      working-directory: ${{ inputs.working-directory }}
+      run: echo "nextVersion=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      shell: bash
+    - name: Publish package
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      working-directory: ${{ inputs.working-directory }}
+      run: npm publish
+      shell: bash

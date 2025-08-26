@@ -11,9 +11,9 @@ This action will set up Node.js.
 #### Example
 
 ```yaml
-  - uses: aboutbits/github-actions-node/setup@v2
+  - uses: aboutbits/github-actions-node/setup@v3
     with:
-      node-version: 20
+      node-version: 22
 ```
 
 #### Inputs
@@ -23,7 +23,7 @@ The following inputs can be used as `step.with` keys:
 | Name                | Required/Default | Description                               |
 |---------------------|------------------|-------------------------------------------|
 | `working-directory` | `.`              | The working directory of the action       |
-| `node-version`      | `20`             | The Node.js version that should be set up |
+| `node-version`      | `22`             | The Node.js version that should be set up |
 | `registry-url`      | (empty)          | Optional registry to set up for auth      |
 
 ### Setup Node and Install Dependencies
@@ -33,9 +33,9 @@ This action will set up Node.js and install all NPM dependencies.
 #### Example
 
 ```yaml
-  - uses: aboutbits/github-actions-node/setup-and-install@v2
+  - uses: aboutbits/github-actions-node/setup-and-install@v3
     with:
-      node-version: 20
+      node-version: 22
 ```
 
 #### Inputs
@@ -45,19 +45,19 @@ The following inputs can be used as `step.with` keys:
 | Name                | Required/Default | Description                               |
 |---------------------|------------------|-------------------------------------------|
 | `working-directory` | `.`              | The working directory of the action       |
-| `node-version`      | `20`             | The Node.js version that should be set up |
+| `node-version`      | `22`             | The Node.js version that should be set up |
 | `registry-url`      | (empty)          | Optional registry to set up for auth      |
 
-### Create a new NPM version
+### Build and Release Package
 
-This action will set up git, increment the NPM version and push the changes.
+This action will build and release an NPM package.
 
 #### Example
 
 ```yaml
-  - uses: aboutbits/github-actions-node/version@v2
+  - uses: aboutbits/github-actions-node/build-and-publish-package@v3
     with:
-      git-user-name: AboutBits
+      version: AboutBits
       git-user-email: info@aboutbits.it
 ```
 
@@ -65,13 +65,13 @@ This action will set up git, increment the NPM version and push the changes.
 
 The following inputs can be used as `step.with` keys:
 
-| Name                | Required/Default | Description                               |
-|---------------------|------------------|-------------------------------------------|
-| `working-directory` | `.`              | The working directory of the action       |
-| `git-user-name`     | Required         | The name of the git user                  |
-| `git-user-email`    | Required         | The email of the git user                 |
-| `version`           | `patch`          | The version that should be set            |
-| `message`           | `[RELEASE] %s`   | The message of the git commit             |
+| Name                | Required/Default | Description                                                                                |
+|---------------------|------------------|--------------------------------------------------------------------------------------------|
+| `working-directory` | `.`              | The working directory of the action                                                        |
+| `node-version`      | `22`             | The Node.js version that should be set up                                                  |
+| `registry-url`      | (empty)          | Optional registry to set up for auth                                                       |
+| `increment`         | required         | The version increment type (major, minor, patch, prerelease, premajor, preminor, prepatch) |
+| `preid`             | (empty)          | The prerelease identifier (only required if increment is premajor, preminor or prepatch)   |
 
 ## Versioning
 
@@ -80,16 +80,16 @@ In order to have a verioning in place and working, create leightweight tags that
 Creating a new minor release:
 
 ```bash
-git tag v2
+git tag v3
 git push --tags
 ```
 
 Replacing an already existing minor release:
 
 ```bash
-git tag -d v2
-git push origin :refs/tags/v2
-git tag v2
+git tag -d v3
+git push origin :refs/tags/v3
+git tag v3
 git push --tags
 ```
 
