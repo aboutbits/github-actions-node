@@ -38,6 +38,11 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: npm
         cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+        registry-url: ${{ inputs.registry-url }}
+    - name: Install dependencies
+      working-directory: ${{ inputs.working-directory }}
+      run: npm ci
+      shell: bash
     - name: Get current package version
       id: currentVersion
       working-directory: ${{ inputs.working-directory }}
