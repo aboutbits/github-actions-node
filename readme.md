@@ -73,25 +73,9 @@ The following inputs can be used as `step.with` keys:
 | `increment`         | required         | The version increment type (major, minor, patch, prerelease, premajor, preminor, prepatch) |
 | `preid`             | (empty)          | The prerelease identifier (only required if increment is premajor, preminor or prepatch)   |
 
-## Versioning
+## Build & Publish
 
-In order to have a verioning in place and working, create leightweight tags that point to the appropriate minor release versions.
-
-Creating a new minor release:
-
-```bash
-git tag v3
-git push --tags
-```
-
-Replacing an already existing minor release:
-
-```bash
-git tag -d v3
-git push origin :refs/tags/v3
-git tag v3
-git push --tags
-```
+To build and publish the chart, visit the GitHub Actions page of the repository and trigger the workflow "Release Package" manually.
 
 ## Information
 
