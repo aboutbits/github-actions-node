@@ -10,7 +10,11 @@ inputs:
     required: true
     default: '22.x'
   registry-url:
-    description: 'Registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN.'
+    description: 'Registry URL to publish the package to. If not set, the action will use the default npm registry.'
+    required: false
+    default: ''
+  registry-token:
+    description: 'The token to use for authentication with the registry.'
     required: false
     default: ''
   increment:
@@ -60,7 +64,7 @@ runs:
       shell: bash
     - name: Publish package
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ inputs.registry-token }}
       working-directory: ${{ inputs.working-directory }}
       run: npm publish
       shell: bash

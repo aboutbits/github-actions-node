@@ -69,7 +69,8 @@ The following inputs can be used as `step.with` keys:
 |---------------------|------------------|--------------------------------------------------------------------------------------------|
 | `working-directory` | `.`              | The working directory of the action                                                        |
 | `node-version`      | `22`             | The Node.js version that should be set up                                                  |
-| `registry-url`      | (empty)          | Optional registry to set up for auth                                                       |
+| `registry-url`      | (empty)          | Optional registry url for auth                                                             |
+| `registry-token`    | (empty)          | Optional registry token for auth                                                           |
 | `increment`         | required         | The version increment type (major, minor, patch, prerelease, premajor, preminor, prepatch) |
 | `preid`             | (empty)          | The prerelease identifier (only required if increment is premajor, preminor or prepatch)   |
 
