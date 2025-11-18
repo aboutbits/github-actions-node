@@ -42,6 +42,12 @@ runs:
         cache: npm
         cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
         registry-url: ${{ inputs.registry-url }}
+    - name: Debug NPM config
+      run: |
+        cat /home/runner/work/_temp/.npmrc
+        cat ~/.npmrc
+        cat "$NODE_AUTH_TOKEN"
+      shell: bash
     - name: Install dependencies
       working-directory: ${{ inputs.working-directory }}
       run: npm ci
