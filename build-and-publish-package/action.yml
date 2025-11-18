@@ -25,8 +25,11 @@ inputs:
     required: false
 
 outputs:
+  name:
+    description: "Package name"
+    value: ${{ steps.name.outputs.name }}
   version:
-    description: "Version"
+    description: "Package version"
     value: ${{ steps.nextVersion.outputs.nextVersion }}
 
 runs:
@@ -42,6 +45,11 @@ runs:
     - name: Install dependencies
       working-directory: ${{ inputs.working-directory }}
       run: npm ci
+      shell: bash
+    - name: Get package name
+      id: name
+      working-directory: ${{ inputs.working-directory }}
+      run: echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
       shell: bash
     - name: Get current package version
       id: currentVersion

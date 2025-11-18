@@ -104,6 +104,15 @@ The following inputs can be used as `step.with` keys:
 | `increment`         | required         | The version increment type (major, minor, patch, prerelease, premajor, preminor, prepatch) |
 | `preid`             | (empty)          | The prerelease identifier (only required if increment is premajor, preminor or prepatch)   |
 
+#### Outputs
+
+The following outputs are forwarded from the underlying actions:
+
+| Name      | Description                                |
+|-----------|--------------------------------------------|
+| `name`    | The package name of the package.json file. |
+| `version` | The new package version.                   |
+
 ## Build & Publish
 
 To build and publish the action, visit the GitHub Actions page of the repository and trigger the workflow "Release Package" manually.
