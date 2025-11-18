@@ -1,13 +1,8 @@
 name: 'Configure GitHub NPM registry access'
 
-inputs:
-  token:
-    description: 'The GitHub token used to access the GitHub NPM registry'
-    required: true
-
 runs:
   using: 'composite'
   steps:
     - name: Configure access for GitHub NPM registry
-      run: echo "//npm.pkg.github.com/:_authToken=${{ inputs.token }}" >> ~/.npmrc
+      run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
       shell: bash

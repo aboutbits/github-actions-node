@@ -56,17 +56,7 @@ This action will set up the access to the GitHub NPM registry.
 
 ```yaml
   - uses: aboutbits/github-actions-node/configure-github-npm-registry-access@v3
-    with:
-      token: ${{ secrets.GITHUB_TOKEN }}
 ```
-
-#### Inputs
-
-The following inputs can be used as `step.with` keys:
-
-| Name    | Required/Default | Description                                             |
-|---------|------------------|---------------------------------------------------------|
-| `token` | required         | The GitHub token used to access the GitHub NPM registry |
 
 ### Configure GitHub NPM Registry Organization
 
