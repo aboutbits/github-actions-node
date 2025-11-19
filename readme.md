@@ -47,36 +47,7 @@ The following inputs can be used as `step.with` keys:
 | `working-directory` | `.`              | The working directory of the action       |
 | `node-version`      | `22`             | The Node.js version that should be set up |
 | `registry-url`      | (empty)          | Optional registry to set up for auth      |
-
-### Configure GitHub NPM Registry Access
-
-This action will set up the access to the GitHub NPM registry.
-
-#### Example
-
-```yaml
-  - uses: aboutbits/github-actions-node/configure-github-npm-registry-access@v3
-```
-
-### Configure GitHub NPM Registry Organization
-
-This action will point an NPM organization to the GitHub NPM registry.
-
-#### Example
-
-```yaml
-  - uses: aboutbits/github-actions-node/configure-github-npm-registry-organization@v3
-    with:
-      organization: aboutbits
-```
-
-#### Inputs
-
-The following inputs can be used as `step.with` keys:
-
-| Name           | Required/Default | Description          |
-|----------------|------------------|----------------------|
-| `organization` | `aboutbits`      | The NPM organization |
+| `registry-token`    | (empty)          | Optional registry token for auth          |
 
 ### Build and Release Package
 
