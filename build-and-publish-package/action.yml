@@ -90,7 +90,7 @@ runs:
         # "x", "v2"), and "latest" would make the prerelease the default install.
         if [[ "$VERSION" == *-* ]]; then
           TAG="$PREID"
-          if [[ ! "$TAG" =~ ^[A-Za-z][0-9A-Za-z-]*$ ]] || [[ "$TAG" =~ ^([xX]|v[0-9].*|latest)$ ]]; then
+          if [[ ! "$TAG" =~ ^[A-Za-z][0-9A-Za-z-]*$ ]] || [[ "$TAG" =~ ^(v*[xX]|v+[0-9].*|latest)$ ]]; then
             TAG=next
           fi
           npm publish --tag "$TAG"
