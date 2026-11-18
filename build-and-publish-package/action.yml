@@ -21,7 +21,7 @@ inputs:
     description: 'The version increment type (major, minor, patch, prerelease, premajor, preminor, prepatch)'
     required: true
   preid:
-    description: 'The prerelease identifier (only required if increment is premajor, preminor or prepatch)'
+    description: 'The prerelease identifier (only required if increment is premajor, preminor or prepatch). Also used as npm dist-tag for prereleases, falls back to "next" if not set or not a valid tag.'
     required: false
 
 outputs:
@@ -81,11 +81,19 @@ runs:
       env:
         NODE_AUTH_TOKEN: ${{ inputs.registry-token }}
         VERSION: ${{ steps.nextVersion.outputs.nextVersion }}
+        PREID: ${{ inputs.preid }}
       working-directory: ${{ inputs.working-directory }}
       run: |
-        # npm requires an explicit dist-tag for prereleases; publish all of them under "next".
+        # npm requires an explicit dist-tag for prereleases, so "latest" only moves on real releases.
+        # Prereleases are published under their preid (e.g. beta). Fall back to "next" if the preid
+        # is missing or not a usable tag: npm rejects tags that look like a version/range (e.g. "1",
+        # "x", "v2"), and "latest" would make the prerelease the default install.
         if [[ "$VERSION" == *-* ]]; then
-          npm publish --tag next
+          TAG="$PREID"
+          if [[ ! "$TAG" =~ ^[A-Za-z][0-9A-Za-z-]*$ ]] || [[ "$TAG" =~ ^([xX]|v[0-9].*|latest)$ ]]; then
+            TAG=next
+          fi
+          npm publish --tag "$TAG"
         else
           npm publish
         fi
