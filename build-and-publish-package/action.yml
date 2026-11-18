@@ -80,6 +80,13 @@ runs:
     - name: Publish package
       env:
         NODE_AUTH_TOKEN: ${{ inputs.registry-token }}
+        VERSION: ${{ steps.nextVersion.outputs.nextVersion }}
       working-directory: ${{ inputs.working-directory }}
-      run: npm publish
+      run: |
+        # npm requires an explicit dist-tag for prereleases; publish all of them under "next".
+        if [[ "$VERSION" == *-* ]]; then
+          npm publish --tag next
+        else
+          npm publish
+        fi
       shell: bash
